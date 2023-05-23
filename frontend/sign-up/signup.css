@@ -1,0 +1,66 @@
+body {
+    background: rgb(238, 200, 131);
+    padding-top: 15vh;
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    object-fit: contain;
+}
+.btn-login a{
+   color: black;
+   background-color: rgb(25, 170, 57);
+   border-radius: 5px;
+   align: center;
+   
+}
+form {
+    background: rgb(238, 231, 231);
+}
+
+.form-container {
+    border-radius: 10px;
+    padding: 30px;
+    height: auto;
+}
+
+.container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.login-button {
+    display: block;
+    margin: 0 auto;
+    background-color: #007bff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.login-button:hover {
+    background-color: #0062cc;
+}
+
+.form-footer {
+    margin-top: 10px;
+}
+
+.form-check-input[type="radio"] {
+    margin-top: 0.3rem;
+    margin-right: 0.5rem;
+}
+
+.dropdown-menu {
+    min-width: unset;
+}
+
+.dropdown-item:hover {
+    background-color: #f8f9fa;
+}

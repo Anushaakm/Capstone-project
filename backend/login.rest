@@ -1,0 +1,17 @@
+### Register New User/Admin 
+POST http://localhost:8080/user/ HTTP/1.1
+content-type: application/json
+
+{
+    "email": "Janu@gmail.com", "password":"Anu@1234", "role":"user"
+
+}
+
+### Login Credentials (User/Admin) 
+POST http://localhost:8080/user/loginv2 HTTP/1.1 
+content-type: application/json
+
+{
+    "email": "Janu@gmail.com", "password":"Anu@1234"
+
+}

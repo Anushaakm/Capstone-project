@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+header {
+    background-color: #220d47;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    height: 80px ;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav a:hover {
+    background-color: #8b729b;
+}
+
+.banner {
+    position: relative;
+    height: 350px;
+    background-color: #ccc;
+    background-image: url('https://www.iaee.com/wp-content/uploads/2016/05/banner-cc-jobs.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    margin-top: 50px;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.card {
+    flex-basis: calc(100%- 20px);
+    margin-bottom: 20px;
+    box-shadow: 1px 1px 3px #ccc;
+    transition: box-shadow 0.3s ease-in-out;
+}
+.card:hover {
+    box-shadow: 2px 2px 5px #ccc;
+}
+.card .card-body {
+    padding: 10px;
+    background-color:aliceblue;
+}
+
+.card .card-title {
+    font-size: 35px;
+    margin-bottom: 10px;
+    color: rgb(23, 21, 148);
+}
+
+.card .card-text {
+    font-size: 20px;
+    line-height: 1.5;
+    color: black;
+}
+

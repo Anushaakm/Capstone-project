@@ -1,0 +1,45 @@
+### Create New Event 
+POST http://localhost:8080/admin/newjob HTTP/1.1 
+Content-Type: application/json
+
+{ "jobTitle" : "zwr",
+    "jobDescription" : "xyz",
+    "location" : "98",
+    "industry" : "abc",
+    "qualification":"be",
+    "applicationRequirement":"w,x,y",
+    "postedDate":"2023-11-04"
+     }
+
+### Get All Craeted Events 
+GET http://localhost:8080/admin/jobs
+
+### Get Event By Passing ID 
+GET http://localhost:8080/admin/jobs/2
+
+### Delete Event By ID 
+DELETE http://localhost:8080/admin/jobs/1
+
+### Update Event 
+PUT http://localhost:8080/admin/updatejob HTTP/1.1 
+Content-Type: application/json
+
+{
+    "id":2,
+    "jobTitle" : "abc",
+    "jobDescription" : "xyz",
+    "location" : "98",
+    "industry" : "abc",
+    "qualification":"be",
+    "applicationRequirement":"w,x,y",
+    "postedDate":"2023-11-04"
+
+}
+
+### Get all userJobs
+
+GET http://localhost:8080/admin/alluserJobs
+
+### Get all userJob for specific user by useremail
+
+GET http://localhost:8080/admin/filterbyemail?email=Manu@123
