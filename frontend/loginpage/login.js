@@ -47,7 +47,6 @@ function apiLogin(user, form) {
   axios.post('http://localhost:8080/user/loginv2', user, { headers })
     .then(httpResponse => {
       form.reset()
-      // console.log(httpResponse)
       console.log(httpResponse.data.bd)
       return httpResponse.data
 

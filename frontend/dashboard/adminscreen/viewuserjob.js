@@ -22,6 +22,7 @@ function propulateActualData(table, userBookings) {
     for(const userBooking of userBookings) {
         console.log(userBooking)
         const {userId, userEmail, jobTitle, location, industry } = userBooking 
+        const feedbackPageUrl = `./feedback.html?id=${userId}`
        
 
         const row = table.insertRow()
@@ -30,7 +31,7 @@ function propulateActualData(table, userBookings) {
         row.insertCell(2).innerHTML = jobTitle
         row.insertCell(3).innerHTML = location
         row.insertCell(4).innerHTML = industry    
-        
+        row.insertCell(5).innerHTML = `<a class='ms-2' href='${feedbackPageUrl}'>Interview</a>`
     }
 }
 

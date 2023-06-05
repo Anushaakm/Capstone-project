@@ -28,9 +28,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./user-dash.html">Home</a>
                     </li>
-                    <li class="nav-item ms-10">
-                        <a class="nav-link" href="./myJobs.html">My Jobs</a>
-                    </li>
+
                     <li class="nav-item ms-10">
                         <a class="nav-link" onclick="logOut()">Logout</a>
                     </li>
@@ -41,46 +39,64 @@
     </nav>
     <div class="container mt-3">
 
-        <div class="row bg-dark text-white mt-2 ">
+        <!-- <div class="row bg-dark text-white mt-2 ">
             <div class="col text-center">
-                <h2 class="p-2 ">Upcoming Jobs . . .</h2>
+                <h2 class="p-2 "></h2>
             </div>
 
-        </div>
-        <div class="row mt-3">
-            <div class="col-3">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="location" placeholder="Location" name="location">
-                    <label for="location">Location</label>
+        </div> -->
+        <br>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">All Jobs</h5>
+                    <p class="card-text">View, Apply and Save the Posted Jobs.
+                    </p>
+                    <a class="btn btn-primary" href="./ViewAllpostedJobs.html">View All Jobs</a>
+                  </div>
                 </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Search and Apply Jobs</h5>
+                    <p class="card-text">Search and Apply Jobs by location, industry or keywords.</p>
+                    <a href="./search.html" class="btn btn-primary">Search and Apply</a>
+                  </div>
+                </div>
+              </div>
 
-            </div>
-            <div class="col-2">
-                <input type="button" value="Serach" class="btn btn-primary" id="btnSearch">
-            </div>
-        </div>
-        <div class="container mt-3">
+              </div>
 
-            <div class="row mt-3">
-                <table class="table table-bordered" id="tableJob" style="border-color: rgb(0, 94, 20); border-width: 2px; border-style: dashed;">
-                    <thead>
-                        <tr>
-                            <th>Job Id</th>
-                        <th>Job Title</th>
-                        <th>Location</th>
-                        <th>Industry</th>
-                        <th>Posted date</th>
-                        <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
+              <br>
+              <div class="row">
+              <div class="col-sm-6"> 
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Job History and Interview</h5>
+                    <p class="card-text">List of Applied Jobs and Interviews.</p>
+                    <a class="btn btn-primary" href="./myJobs.html">My Jobs</a>
+                  </div>
+                </div>
+              </div>
 
-            </div>
-        </div>
-       
+              <div class="col-sm-6"> 
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Saved Jobs</h5>
+                    <p class="card-text">Apply for Saved Jobs.</p>
+                    <a class="btn btn-primary" href="./savedJobs.html">Saved Jobs</a>
+                  </div>
+                </div>
+              </div>
+    </div>
+    </div>
+    
+            
         <script src="view-upcoming-jobs.js"></script>
+        <!-- <script src="../adminscreen/viewJobs.js"></script> -->
+
 </body>
 
 </html>

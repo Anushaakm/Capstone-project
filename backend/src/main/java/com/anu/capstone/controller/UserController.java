@@ -38,23 +38,46 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+    @PostMapping(value = "/{userId}/savejob/{jobPostId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> newJobSave(@Valid @PathVariable Long userId, @PathVariable Long jobPostId) {
+        Integer saveJobPost = userService.SaveJobPosting(userId, jobPostId);
+        AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .msg("new job saved successfully.")
+                .bd(saveJobPost)
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
     @GetMapping(value = "/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserJobPostDto>> findAll(@PathVariable Long userId) {
 
         return ResponseEntity.ok().body(userService.getAllJobs(userId));
     }
 
-    @GetMapping(value = "/jobs", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "savejob/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<UserJobPostDto>> findAllSavedJobs(@PathVariable Long userId) {
+
+        return ResponseEntity.ok().body(userService.getSavedJob(userId));
+    }
+
+    @GetMapping(value = "/jobs/location", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<JobListDto>> findJobByIdLoction(@RequestParam String location) {
 
         return ResponseEntity.ok().body(userService.getJobsByLocation(location));
     }
 
-    //@GetMapping(value = "/jobs", produces = MediaType.APPLICATION_JSON_VALUE)
-    //public ResponseEntity<List<JobListDto>> findJobByIdIndustry(@RequestParam String industry) {
+    @GetMapping(value = "/jobs/industry", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<JobListDto>> findJobByIdIndustry(@RequestParam String industry) {
 
-     //   return ResponseEntity.ok().body(userService.getJobsByIndusry(industry));
-    //}
+       return ResponseEntity.ok().body(userService.getJobsByIndusry(industry));
+    }
+
+    @GetMapping(value = "/jobs/keyword", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<JobListDto>> findJobByIbyJobTitle(@RequestParam String jobTitle) {
+
+       return ResponseEntity.ok().body(userService.getJobsByJobTitle(jobTitle));
+    }
+
     @GetMapping(value = "/{userId}/job/{jobPostId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<UserJobPostDto>> findEventById(@PathVariable Long userId,
             @PathVariable Long jobPostId) {
@@ -67,5 +90,29 @@ public class UserController {
                 .build();
         return ResponseEntity.ok().body(response);
     }
+    @GetMapping(value = "/{userId}/savejob/{jobPostId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<UserJobPostDto>> findJobById(@PathVariable Long userId,
+            @PathVariable Long jobPostId) {
 
+        UserJobPostDto dto = userService.getSavedJob(userId, jobPostId);
+
+        AppResponse<UserJobPostDto> response = AppResponse.<UserJobPostDto>builder()
+                .msg("saved Jobs Details")
+                .bd(dto)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    // @GetMapping(value = "/{jobpostId}/feedback", produces = MediaType.APPLICATION_JSON_VALUE)
+    // public ResponseEntity<AppResponse<List<FeedbackDto>>> getNotifications(@PathVariable Long jobpostId) {
+
+    //     List<FeedbackDto> getNotifications = userService.getFeedback(jobpostId);
+    //     AppResponse<List<FeedbackDto>> response = AppResponse.<List<FeedbackDto>>builder()
+    //             .msg("Reminders for event")
+    //             .bd(getNotifications)
+    //             .build();
+    //     return ResponseEntity.ok().body(response);
+    // }
 }
+
+

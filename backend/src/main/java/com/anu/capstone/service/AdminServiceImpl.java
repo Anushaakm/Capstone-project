@@ -3,26 +3,30 @@ package com.anu.capstone.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
-
+import com.anu.capstone.domain.Feedback;
 import com.anu.capstone.domain.JobPosting;
 import com.anu.capstone.domain.User;
 import com.anu.capstone.dto.AdminUserJobDto;
+import com.anu.capstone.dto.FeedbackDto;
 import com.anu.capstone.dto.JobListDto;
 import com.anu.capstone.dto.JobpostingDto;
 import com.anu.capstone.dto.UpdateJobDto;
+import com.anu.capstone.exception.FeedbackNotFoundException;
 import com.anu.capstone.exception.JobNotFoundException;
-import com.anu.capstone.exception.UserNotFoundException;
+import com.anu.capstone.repository.FeedbackRepository;
 import com.anu.capstone.repository.JobPostRepository;
 import com.anu.capstone.repository.UserRepository;
 import com.anu.capstone.util.DynamicMapper;
-
 import lombok.AllArgsConstructor;
+
 @Service
 @AllArgsConstructor
 public class AdminServiceImpl implements AdminService{
     private final UserRepository userRepository;
     private final JobPostRepository jobPostRepository;
+    private final FeedbackRepository feedbackRepository;
     private final DynamicMapper dynamicMapper;
     @Override
     public Integer createNewJob(JobpostingDto dto) {
@@ -68,54 +72,66 @@ public class AdminServiceImpl implements AdminService{
 
     @Override
     public List<AdminUserJobDto> getAllUserJobs() {
-        List<AdminUserJobDto> adminUserBookDtos = new ArrayList<>();
+        List<AdminUserJobDto> adminUserJobDtos = new ArrayList<>();
         List<User> users = userRepository.findAll();
         for (User user : users) {
-            for (JobPosting bookingSlot : user.getJobPostings()) {
-                AdminUserJobDto adminUserBookDto = new AdminUserJobDto();
-                adminUserBookDto.setUserId(user.getId());
-                adminUserBookDto.setUserEmail(user.getEmail());
-                adminUserBookDto.setLocation(bookingSlot.getLocation());
-                adminUserBookDto.setJobTitle(bookingSlot.getJobTitle());
-                adminUserBookDto.setIndustry(bookingSlot.getIndustry());
-                adminUserBookDtos.add(adminUserBookDto);
+            for (JobPosting jobPosting : user.getJobPostings()) {
+                AdminUserJobDto adminUserJobDto = new AdminUserJobDto();
+                adminUserJobDto.setUserId(user.getId());
+                adminUserJobDto.setUserEmail(user.getEmail());
+                adminUserJobDto.setLocation(jobPosting.getLocation());
+                adminUserJobDto.setJobTitle(jobPosting.getJobTitle());
+                adminUserJobDto.setIndustry(jobPosting.getIndustry());
+                adminUserJobDtos.add(adminUserJobDto);
             }
         }
-        return adminUserBookDtos;
+        return adminUserJobDtos;
     }
 
     @Override
     public List<AdminUserJobDto> searchUserJobsByEmail(String email) {
-        List<AdminUserJobDto> adminUserBookDtos = new ArrayList<>();
+        List<AdminUserJobDto> adminUserJobDtos = new ArrayList<>();
         List<User> users = userRepository.findAllByEmail(email);
         for (User user : users) {
-            for (JobPosting bookingSlot : user.getJobPostings()) {
-                AdminUserJobDto adminUserBookDto = new AdminUserJobDto();
-                adminUserBookDto.setUserId(user.getId());
-                adminUserBookDto.setUserEmail(user.getEmail());
-                adminUserBookDto.setLocation(bookingSlot.getLocation());
-                adminUserBookDto.setJobTitle(bookingSlot.getJobTitle());
-                adminUserBookDto.setIndustry(bookingSlot.getIndustry());
-                adminUserBookDtos.add(adminUserBookDto);
+            for (JobPosting jobPosting : user.getJobPostings()) {
+                AdminUserJobDto adminUserJobDto = new AdminUserJobDto();
+                adminUserJobDto.setUserId(user.getId());
+                adminUserJobDto.setUserEmail(user.getEmail());
+                adminUserJobDto.setLocation(jobPosting.getLocation());
+                adminUserJobDto.setJobTitle(jobPosting.getJobTitle());
+                adminUserJobDto.setIndustry(jobPosting.getIndustry());
+                adminUserJobDtos.add(adminUserJobDto);
             }
         }
-        return adminUserBookDtos;
+        return adminUserJobDtos;
     }
     
+    @Override
+    public Integer createFeedback(Long id, FeedbackDto dto) {
+        JobPosting jobPosting= jobPostRepository.findById(id).orElseThrow(() -> new JobNotFoundException("No Job found for " + id + " ID"));
+        Feedback feedback = dynamicMapper.convertor(dto, new Feedback());
+        feedback.setJobs(jobPosting);
+        feedbackRepository.save(feedback);
+        return 1;
+    }
 
-    // @Override
-    // public List<AdminUserJobDto> searchUserJobsByEmail(String email) {
-    //     List<AdminUserJobDto> adminUserBookDtos = userRepository.findAllByEmail(email)
-    //                       .stream()
-    //                       .map(user-> dynamicMapper.convertor(user, new AdminUserJobDto()))
-    //                       .collect(Collectors.toList());
-    //     if(adminUserBookDtos.isEmpty()){
-    //         throw new UserNotFoundException("no user present");
-    //     }
-      
-    //     return adminUserBookDtos;
+    @Override
+    public List<FeedbackDto> listAllFeedbacks() {
+        List<Feedback> feedbackList = feedbackRepository.findAll();
+        List<FeedbackDto> feedbackDtoList = new ArrayList<>();
 
-    // }
+        for (Feedback feedback : feedbackList) {
+            FeedbackDto feedbackDto = new FeedbackDto();
+            BeanUtils.copyProperties(feedback, feedbackDto);
+            feedbackDtoList.add(feedbackDto);
+            if (feedbackDtoList.isEmpty()) {
+                throw new FeedbackNotFoundException("no feedback present ");
+            }
+        }
+        
+
+        return feedbackDtoList;
+    }
 
 }
     

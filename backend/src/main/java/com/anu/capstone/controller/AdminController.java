@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.anu.capstone.dto.AdminUserJobDto;
+import com.anu.capstone.dto.FeedbackDto;
 import com.anu.capstone.dto.JobListDto;
 import com.anu.capstone.dto.JobpostingDto;
 import com.anu.capstone.dto.UpdateJobDto;
@@ -33,6 +34,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
+
     @PostMapping(value = "/newjob", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> newJob(@Valid @RequestBody JobpostingDto dto) {
         Integer createNewJob = adminService.createNewJob(dto);
@@ -88,7 +90,7 @@ public class AdminController {
     
 
 }
-//when admin clicks view all userbookings
+//when admin clicks view all userJobs
 
 @GetMapping(value = "/alluserJobs", produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<AppResponse<List<AdminUserJobDto>>> getAllUserBookings() {
@@ -100,7 +102,7 @@ public ResponseEntity<AppResponse<List<AdminUserJobDto>>> getAllUserBookings() {
     .build();
       return ResponseEntity.ok().body(response);
 }
-//when admin searches username and clicks search
+//when admin searches useremail and clicks search
 
 @GetMapping(value = "/filterbyemail", produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<AppResponse<List<AdminUserJobDto>>> findUserJobsByEmail(@RequestParam String email) {
@@ -115,6 +117,26 @@ public ResponseEntity<AppResponse<List<AdminUserJobDto>>> findUserJobsByEmail(@R
      
 }
 
-    
+@PostMapping(value = "/{id}/feedback", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> createFeedback(@PathVariable Long id, @RequestBody FeedbackDto dto) {
+        Integer sts = adminService.createFeedback(id,dto);
+        AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .sts("success")
+                .msg("feedback submitted.")
+                .bd(sts)
+                .build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @GetMapping(value = "/feedback", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<FeedbackDto>>> getAllFeedbacks() {
+        List<FeedbackDto> sts = adminService.listAllFeedbacks();
+        AppResponse<List<FeedbackDto>> response = AppResponse.<List<FeedbackDto>>builder()
+                .sts("success")
+                .msg("All Feedbacks")
+                .bd(sts)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
 
 }

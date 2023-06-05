@@ -3,6 +3,7 @@ package com.anu.capstone.service;
 import java.util.List;
 
 import com.anu.capstone.dto.AdminUserJobDto;
+import com.anu.capstone.dto.FeedbackDto;
 import com.anu.capstone.dto.JobListDto;
 import com.anu.capstone.dto.JobpostingDto;
 import com.anu.capstone.dto.UpdateJobDto;
@@ -15,5 +16,6 @@ public interface AdminService {
     Integer updateJobPost(UpdateJobDto dto);
     List<AdminUserJobDto> getAllUserJobs();
     List<AdminUserJobDto> searchUserJobsByEmail(String email);
-
+    Integer createFeedback(Long id, FeedbackDto dto);
+    List<FeedbackDto> listAllFeedbacks();
 }

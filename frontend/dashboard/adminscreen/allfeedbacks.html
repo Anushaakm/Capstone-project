@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Feedbacks</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+	<title>Interviews</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="text-center">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./admin-dash.html">Interview</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="./admin-dash.html">Home</a>
+                    </li>
+                    <li class="nav-item ms-10">
+                        <a class="nav-link" href="./viewAllJobs.html" id="events">Jobs</a>
+                    </li>
+                    <li class="nav-item ms-10">
+                        <a class="nav-link" href="./createNewJob.html">Post Job</a>
+                    </li>
+
+                    <li class="nav-item ms-10">
+                        <a class="nav-link" onclick="logOut()">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+	<div class="row bg-success text-white mt-2 ">
+		<div class="col">
+			<h2 class="p-2 "> <b>All interviews</b></h2>
+		</div>
+	</div>
+	<div class="container-md mt-4" >
+		
+		<table class="table " style="color: rgb(0, 0, 0);" >
+			<thead>
+				<tr>
+					<th scope="col">Comment</th>
+					<th scope="col">Location</th>
+                    <th scope="col">Interview Date</th>
+				</tr>
+			</thead>
+			<tbody id="feedbacks">
+				<!-- feedbacks will be dynamically loaded here -->
+			</tbody>
+		</table>
+	</div>
+	
+	<script src="./allfeedbacks.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

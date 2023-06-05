@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="admin.css">
 </head>
 
-<body>
+<body class="text-center">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="./admin-dash.html">Job Recruiter Dashboard</a>
@@ -30,7 +30,7 @@
                     <li class="nav-item ms-10">
                         <a class="nav-link" href="./createNewJob.html">Post Job</a>
                     </li>
-                    
+
                     <li class="nav-item ms-10">
                         <a class="nav-link" onclick="logOut()">Logout</a>
                     </li>
@@ -38,10 +38,13 @@
             </div>
         </div>
     </nav>
-    <div class="card-container mb-4">
-        <div class="card-header">
-            <h2>Create New Job</h2>
+    <div class="container mt-3">
+        <div class="row bg-success text-white mt-2 ">
+            <div class="col">
+                <h2 class="p-2 "> <b>Create New Job</b></h2>
+            </div>
         </div>
+        
         <div class="card-body">
             <form class="form-minimize" id="new-event-link">
                 <div class="row">
@@ -52,8 +55,16 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="jobTitle"><b>Job Name</b></label>
-                    <input type="text" class="form-control input-minimize" id="jobTitle" placeholder="Enter Job name"
+                    <select type="text" class="form-control input-minimize" id="jobTitle" placeholder="Enter Job name"
                         name="jobTitle">
+                        <option>Select Job Title</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="full-stack developers">full-stack developers</option>
+                        <option value="Machine learning experts">Machine learning experts</option>
+                        <option value="blockchain developer">blockchain developer</option>
+                        <option value="Software trainee">Software trainee</option>
+                        <option value="Banking">Banking</option>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="jobDescription"><b>Job Description</b></label>
@@ -62,11 +73,28 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="loaction"><b>Location</b></label>
-                    <input type="text" class="form-control input-minimize" id="location" name="location">
+                    <select type="text" class="form-control input-minimize" id="location" name="location">
+                        <option>Select Location</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Mumbai">Mumbai</option>
+                        <option value="Hyderabad">Hyderabad</option>
+                        <option value="Chennai">Chennai</option>
+                        <option value="Pune">Pune</option>
+                        <option value="Delhi">Delhi</option>
+                        <option value="Noida">Noida</option>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="industry"><b>Industry</b></label>
-                    <input type="text" class="form-control input-minimize" id="industry" name="industry">
+                    <select type="text" class="form-control input-minimize" id="industry" name="industry">
+                        <option>Select Industry</option>
+                        <option value="IT">IT</option>
+                        <option value="Non-IT">Non-IT</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Automobile">Automobile</option>
+                        <option value="Banking">Banking</option>
+                    </select>
                 </div>
                 <div class="form-group mb-2">
                     <label for="qualification"><b>Qualification</b></label>
@@ -74,15 +102,16 @@
                 </div>
                 <div class="form-group mb-2">
                     <label for="applicationRequirement"><b>Application Requirement</b></label>
-                    <input type="text" class="form-control input-minimize" id="applicationRequirement" name="applicationRequirement">
+                    <input type="text" class="form-control input-minimize" id="applicationRequirement"
+                        name="applicationRequirement">
                 </div>
                 <div class="form-group mb-2">
                     <label for="postedDate"><b>posted Date</b></label>
                     <input type="date" class="form-control input-minimize" id="postedDate" name="postedDate"
                         min="yyyy-mm-dd">
                 </div>
-                
-                
+
+
                 <div class="text-center">
                     <button type="submit" class="btn btn-primary padding-10px">Create Job</button>
                 </div>

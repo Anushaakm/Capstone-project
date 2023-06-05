@@ -1,8 +1,8 @@
 package com.anu.capstone.domain;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,8 +11,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.persistence.*;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +25,7 @@ public class JobPosting {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    
     private Long id;
 
     @NotBlank(message = "title is mandatory")
@@ -59,8 +57,10 @@ public class JobPosting {
     @ManyToMany(mappedBy="jobPostings")
     private List<User> users;
 
-    @OneToMany(mappedBy ="jobPosting", cascade = CascadeType.ALL)
-    private List<Application> application;
-
+    @ManyToMany(mappedBy="savedJobPostings")
+    private List<User> savedUsers;
+    
+    @OneToMany(mappedBy = "jobs", cascade=CascadeType.ALL)
+    private List<Feedback> feedback=new ArrayList<>();
    
 }

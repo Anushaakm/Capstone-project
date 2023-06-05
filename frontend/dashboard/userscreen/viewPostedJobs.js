@@ -9,9 +9,10 @@ function propulateActualData(table, jobs) {
 
     for (const job of jobs) {
 
-        const { id, jobTitle, location, industry, postedDate} = job
-        const updatePageUrl = `./updateJob.html?id=${id}`
+        const { id, jobTitle, location, industry} = job
+        const applyPageUrl = `./viewJob.html?id=${id}`
         const viewPageUrl = `./viewJobDes.html?id=${id}`
+        const savePageUrl = `./save.html?id=${id}`
 
         const row = table.insertRow()
         row.insertCell(0).innerHTML = id
@@ -20,11 +21,12 @@ function propulateActualData(table, jobs) {
         row.insertCell(3).innerHTML = industry
         // row.insertCell(4).innerHTML = postedDate
         row.insertCell(4).innerHTML = `
-            <a class='ms-2' href='${updatePageUrl}'>Update</a> 
-            <a class='ms-2' href='${viewPageUrl}'>View</a> 
            
+            <a class='ms-2' href='${viewPageUrl}'>View</a> 
+            <a class='ms-2' href='${applyPageUrl}'>Apply</a>
+            <a class='ms-2' href='${savePageUrl}'>Save</a>
+            
         `
-         // <a class='ms-2' onclick='showConfirmDeleteModal(${id})'>Delete</a> 
     }
 }
 

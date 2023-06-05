@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.*;
 import javax.persistence.ManyToMany;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -29,7 +28,6 @@ public class User {
     
     @NotNull(message = "Email should not be null")
     @NotBlank(message = "Email is mandatory")
-    @Email(message = "Invalid Email")
     private String email;
 
     @NotNull(message = "Password should not be null")
@@ -48,5 +46,13 @@ public class User {
         inverseJoinColumns = @JoinColumn(name = "job_post_id")
     )
     private List<JobPosting> jobPostings;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "saved_application",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "job_post_id")
+    )
+    private List<JobPosting> savedJobPostings;
 
 }

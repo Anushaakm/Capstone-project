@@ -43,3 +43,21 @@ GET http://localhost:8080/admin/alluserJobs
 ### Get all userJob for specific user by useremail
 
 GET http://localhost:8080/admin/filterbyemail?email=Manu@123
+
+
+### Create New feedback
+
+POST http://localhost:8080/admin/2/feedback HTTP/1.1
+content-type: application/json
+
+{
+
+    "comment": "helloo itis nme",
+    "location": "Bengaluru",
+    "interviewDate": "2023-11-08"
+
+}
+
+### Get All feedbacks
+
+GET http://localhost:8080/admin/feedback

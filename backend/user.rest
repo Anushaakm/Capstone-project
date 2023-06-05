@@ -1,13 +1,35 @@
-### Book Event by user id and event id 
+### Book Event by user id and job id 
 POST http://localhost:8080/jobseeker/2/job/1 HTTP/1.1 
 Content-Type: application/json
 
-### Get All Booked Events by user id 
+### Save Event by user id and job id 
+POST http://localhost:8080/jobseeker/2/savejob/1 HTTP/1.1 
+Content-Type: application/json
+
+### Get Saved jobs by user id and job id 
+GET http://localhost:8080/jobseeker/2/savejob/1
+
+### Get All Applied jobs by user id 
 GET http://localhost:8080/jobseeker/2
 
-### Get Booked Event by user id and event id 
+### Get All saved jobs by user id 
+GET http://localhost:8080/jobseeker/savejob/2
+
+
+### Get Applied jobs by user id and job id 
 GET http://localhost:8080/jobseeker/2/job/1
 
-### Filter event Event 
-GET http://localhost:8080/jobseeker/jobs?location=98 HTTP/1.1 
+### Filter job by location 
+GET http://localhost:8080/jobseeker/jobs/location?location=98 HTTP/1.1 
 Content-Type: application/json
+
+### Filter job by industry
+GET http://localhost:8080/jobseeker/jobs/industry?industry=abc  HTTP/1.1 
+Content-Type: application/json
+
+### Filter job by keyword
+GET http://localhost:8080/jobseeker/jobs/keyword?jobTitle=zwr  HTTP/1.1 
+Content-Type: application/json
+
+### Get all notifications for jobpost id 
+GET http://localhost:8080/jobseeker/job/2

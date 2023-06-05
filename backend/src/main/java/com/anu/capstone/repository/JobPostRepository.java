@@ -8,7 +8,7 @@ import com.anu.capstone.domain.JobPosting;
 
 public interface JobPostRepository extends JpaRepository<JobPosting,Long> {
     List<JobPosting> findAllByLocation(String location);
-    
     List<JobPosting> findAllByIndustry(String industry);
+    List<JobPosting> findAllByJobTitle(String jobTitle);
     List <JobPosting> findByUsers(Long id);
 }
